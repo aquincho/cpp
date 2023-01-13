@@ -6,7 +6,7 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 14:23:57 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/11 14:30:37 by aquincho         ###   ########.fr        #
+#    Updated: 2023/01/13 14:07:50 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean:
-	$(RM) $^
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
