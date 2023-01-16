@@ -6,15 +6,15 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:51 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/13 14:06:52 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:11:44 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <ctime>
-#include <sstream>
-#include <iomanip>
+#include <iostream>
 #include <string>
+#include <iomanip>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -131,12 +131,12 @@ void	Account::_displayTimestamp(void)
 {
 	std::time_t 		now;
 	std::tm 			*timestamp;
-	std::stringstream	ss;
 	
 	std::time(&now);
 	timestamp = std::localtime(&now);
 	//ss << std::put_time(timestamp, "YY");
 	std::cout << "[";
 	std::cout << std::asctime(timestamp) << "-";
+	std::cout << std::put_time(timestamp, "%Y");
 	std::cout << "] ";
 }
