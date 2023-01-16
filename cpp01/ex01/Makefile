@@ -7,7 +7,7 @@ RM = rm -f
 INC_DIR = ./
 INC_FLAGS = -I $(INC_DIR)
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = main.cpp Zombie.cpp zombieHorde.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp

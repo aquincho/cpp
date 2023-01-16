@@ -6,23 +6,26 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:22:57 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/16 13:29:15 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:32:25 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <cstdlib>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	Zombie	*zombie1;
+	Zombie	*zombies;
+	int		zombieCount;
 	
-	std::cout << "creation d'un zombie sur la heap" << std::endl;
-	zombie1 = newZombie("George A");
-	std::cout << "presentation du zombie sur la heap" << std::endl;
-	zombie1->announce();
-	std::cout << "destruction du zombie sur la heap" << std::endl;
-	delete zombie1;
-	std::cout << "Utilisation d'un sombie sur la stack" << std::endl;
-	randomChump("Zack");
+	if (argc != 2)
+		zombieCount = 3;
+	else
+		zombieCount = std::atoi(argv[1]);
+	zombies = zombieHorde(zombieCount, "George A");
+	for (int i = 0; i < zombieCount; i++)
+		zombies[i].announce();
+	std::cout << "Destruction:" << std::endl;
+	delete[] zombies;
 	return (0);
 }
