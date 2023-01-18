@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:53 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/16 15:37:28 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 09:32:19 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	Weapon(std::string type);
 	~Weapon();
 
-	std::string	getType(void);
+	std::string	getType(void) const;
 	void		setType(std::string type);
 };
 
