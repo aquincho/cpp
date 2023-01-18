@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:12:02 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/18 08:55:06 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 09:02:26 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ _name(name)
 
 void	Zombie::announce(void) const
 {
-	std::cout << this->get_name() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-std::string	Zombie::get_name(void) const
+std::string	Zombie::getName(void) const
 {
 	return (this->_name);
 }
 
-void	Zombie::set_name(std::string name)
+void	Zombie::setName(std::string name)
 {
 	this->_name = name;
 }
