@@ -6,14 +6,14 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 15:01:49 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/16 16:05:38 by aquincho         ###   ########.fr        #
+#    Updated: 2023/01/18 09:55:58 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = weapon
 
 CC = g++
-CFLAGS = -std=c++98 #-Wall -Werror -Wextra 
+CFLAGS = -std=c++98 -Wall -Werror -Wextra 
 RM = rm -f
 
 INC_DIR = ./
