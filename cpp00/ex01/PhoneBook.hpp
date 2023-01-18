@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:48:05 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/12 10:49:09 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 08:49:54 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ public:
 
 	int		getNbContacts(void) const;
 	void	printActions(void) const;
-	void	printPhonebook(void);
+	void	printPhonebook(void) const;
 	void	addContact(void);
-	void	searchContact(int index);
+	void	searchContact(int index) const;
 };
 
 #endif

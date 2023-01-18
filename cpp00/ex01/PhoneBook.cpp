@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:40:49 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/12 10:49:18 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 08:50:18 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	PhoneBook::addContact(void)
 	this->_contacts[this->_indexLastEntry].setContact(this->_indexLastEntry);
 }
 
-void	PhoneBook::printPhonebook(void)
+void	PhoneBook::printPhonebook(void) const
 {
 	std::cout << this->_nbContacts << " contacts in phone book" << std::endl;
 	for (int i = 0; i < this->_nbContacts; i++)
 		this->_contacts[i].printShort();
 }
 
-void	PhoneBook::searchContact(int index)
+void	PhoneBook::searchContact(int index) const
 {
 	this->_contacts[index].printContact();
 }
