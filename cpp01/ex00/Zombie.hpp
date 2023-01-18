@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:05:24 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/16 13:36:01 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 08:53:28 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ public:
 	~Zombie(void);
 	Zombie(std::string name);
 
-	void		announce(void);
-	std::string	get_name(void);
+	void		announce(void) const;
+	std::string	get_name(void) const;
 
 
 private:

@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:12:02 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/16 13:15:16 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/18 08:53:26 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ _name(name)
 	std::cout << "Zombie constructor for: " << this->_name << std::endl;
 }
 
-void	Zombie::announce(void)
+void	Zombie::announce(void) const
 {
 	std::cout << this->get_name() << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-std::string	Zombie::get_name(void)
+std::string	Zombie::get_name(void) const
 {
 	return (this->_name);
 }
