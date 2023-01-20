@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/20 12:51:04 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/20 12:51:06 by aquincho         ###   ########.fr        #
+#    Created: 2023/01/20 12:50:58 by aquincho          #+#    #+#              #
+#    Updated: 2023/01/20 12:53:19 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = harlFilter
 
 CC = g++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 RM = rm -f
 
 INC_DIR = ./
