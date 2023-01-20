@@ -6,7 +6,7 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 09:55:51 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/18 11:17:00 by aquincho         ###   ########.fr        #
+#    Updated: 2023/01/20 09:44:29 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,14 @@ CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRCS = main.cpp
+INC_DIR = ./
+IFLAGS = -I $(INC_DIR)
+
+SRCS = main.cpp strReplace.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $(NAME)
