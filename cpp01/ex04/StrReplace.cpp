@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strReplace.cpp                                     :+:      :+:    :+:   */
+/*   StrReplace.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 09:09:32 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/20 10:02:03 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:58:51 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strReplace.hpp"
+#include "StrReplace.hpp"
 
-strReplace::strReplace() : _pos(0), _status(0)
+StrReplace::StrReplace() : _pos(0), _status(0)
 {
 }
 
-strReplace::~strReplace()
+StrReplace::~StrReplace()
 {
 }
 
-int	strReplace::getStatus(void) const
+int	StrReplace::getStatus(void) const
 {
 	return (this->_status);
 }
 
-void	strReplace::setStatus(int status)
+void	StrReplace::setStatus(int status)
 {
 	this->_status = status;
 }
 
-int	strReplace::open(char *file)
+int	StrReplace::open(char *file)
 {
 	this->_inFile.open(file, std::ifstream::in);
 	this->_outFile.open((std::string(file).append(".replace")).c_str(),
@@ -45,13 +45,13 @@ int	strReplace::open(char *file)
 	return (this->getStatus());
 }
 
-void	strReplace::close()
+void	StrReplace::close()
 {
 	this->_inFile.close();
 	this->_outFile.close();
 }
 
-void	strReplace::replace(char *s1, char *s2)
+void	StrReplace::replace(char *s1, char *s2)
 {
 	while (!this->_inFile.eof())
 	{

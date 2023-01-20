@@ -6,7 +6,7 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 09:55:51 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/20 09:44:29 by aquincho         ###   ########.fr        #
+#    Updated: 2023/01/20 10:59:22 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 INC_DIR = ./
 IFLAGS = -I $(INC_DIR)
 
-SRCS = main.cpp strReplace.cpp
+SRCS = main.cpp StrReplace.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
