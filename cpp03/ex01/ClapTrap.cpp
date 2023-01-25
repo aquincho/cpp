@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:18:16 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/25 12:31:27 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:22:26 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &copy)
 void	ClapTrap::energyLeft(void) const
 {
 	std::cout << "ClapTrap " << this->_name << std::endl;
-	std:: cout << "\tEnergy: " << this->_energyPoints << std::endl;
+	std:: cout << "\tEnergy: " << this->_energyPoints;
 	std:: cout << "\tHit points: " << this->_hitPoints << std::endl;
 	std::cout << std::endl;
 }
@@ -69,7 +69,6 @@ void	ClapTrap::attack(const std::string& name)
 	else
 		std::cout << " has not enough energy points to attak!";
 	std::cout << std::endl;
-	this->energyLeft();
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -80,7 +79,6 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		this->_hitPoints = 0;
 	std::cout << "ClapTrap " << this->_name << " has taken ";
 	std::cout << amount << " points of damage!" << std::endl;
-	this->energyLeft();
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -98,5 +96,4 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else
 		std::cout << " has not enough energy points to be reapaired!";
 	std::cout << std::endl;
-	this->energyLeft();
 }

@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:18:24 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/25 12:21:37 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:10:40 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 class ClapTrap
 {
 private:
+
+protected:
 	std::string	_name;
 	int			_hitPoints;
 	int			_energyPoints;

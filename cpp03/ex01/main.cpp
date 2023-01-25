@@ -6,30 +6,49 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:40:36 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/25 12:15:11 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:27:28 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void)
 {
 	ClapTrap	clap1("Morpheus");
-	ClapTrap	clap2("Death");
+	ScavTrap	scav1("Gregory");
+	ScavTrap	scav2("Mervyn");
+	
 
-	clap1.energyLeft();
-	clap1.attack("Despair");
-	clap1.takeDamage(5);
-	clap1.beRepaired(2);
-	clap1.attack("Desire");
-	clap1.takeDamage(10);
-	clap1.beRepaired(5);
-	clap1.attack("Destiny");
+	scav1.energyLeft();
+	scav1.attack("Despair");
+	scav1.energyLeft();
+	scav1.takeDamage(50);
+	scav1.energyLeft();
+	scav1.beRepaired(20);
+	scav1.energyLeft();
+	scav1.attack("Desire");
+	scav1.energyLeft();
+	scav1.takeDamage(90);
+	scav1.energyLeft();
+	scav1.beRepaired(50);
+	scav1.energyLeft();
+	scav1.attack("Destiny");
+	scav1.energyLeft();
+	scav1.guardGate();
+	scav1.energyLeft();
 	std::cout << std::endl;
-	clap2.energyLeft();
-	clap2.takeDamage(9);
-	for(int i = 0; i <= 10; i++)
-		clap2.beRepaired(1);
-	clap2.attack("Destiny");
+	scav2.energyLeft();
+	scav2.takeDamage(99);
+	scav2.energyLeft();
+	scav2.guardGate();
+	scav2.energyLeft();
+	for(int i = 0; i <= 50; i++)
+		scav2.beRepaired(1);
+	scav2.energyLeft();
+	scav2.attack("Destiny");
+	scav2.energyLeft();
+	scav2.guardGate();
+	scav2.energyLeft();
 	return (0);
 }
