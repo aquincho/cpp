@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 16:27:05 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/25 16:34:36 by aquincho         ###   ########.fr       */
+/*   Created: 2023/01/25 15:40:55 by aquincho          #+#    #+#             */
+/*   Updated: 2023/01/26 11:11:54 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#ifndef ANIMAL_H
+# define ANIMAL_H
 
-Dog::Dog() : Animal("dog")
-{
-	std::cout << "default Dog constructor called" << std::endl;
-}
+# include <iostream>
 
-Dog::Dog(const Dog &copy) : Animal(copy)
+class Animal
 {
-	*this = copy;
-}
+protected:
+	std::string	_type;
+public:
+	Animal();
+	Animal(const Animal &src);
+	Animal(std::string type);
+	virtual ~Animal();
 
-Dog::~Dog()
-{
-	std::cout << "Dog destructor called" << std::endl;
-}
+	Animal	&operator=(const Animal &src);
 
-Dog&	Dog::operator=(const Dog& copy)
-{
-	if (this != &copy)
-		this->_type = copy._type;
-	return (*this);
-}
+	std::string			getType(void) const;
+	virtual void		makeSound(void) const;
+};
 
-void	Dog::makeSound(void) const
-{
-	std::cout << "WOOF" << std::endl;
-}
+#endif

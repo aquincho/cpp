@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:42:55 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/25 16:24:42 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:15:59 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ Animal::Animal(void)
 	std::cout << "Default Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal &copy)
+Animal::Animal(const Animal &src)
 {
 	std::cout << "Copy Animal constructor called" << std::endl;
-	*this = copy;
+	*this = src;
 }
 
 Animal::Animal(std::string type) : _type(type)
 {
-	
+	std::cout << "Animal constructor called with: " << type << std::endl;
 }
 
 Animal::~Animal()
@@ -33,12 +33,13 @@ Animal::~Animal()
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal&	Animal::operator=(const Animal &copy)
+Animal&	Animal::operator=(const Animal &src)
 {
 	
-	if (this != &copy)
+	std::cout << "Animal assign operator called" << std::endl;
+	if (this != &src)
 	{
-		this->_type = copy._type;
+		this->_type = src._type;
 	}
 	return (*this);
 }
