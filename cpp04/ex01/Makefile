@@ -6,7 +6,7 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 15:36:07 by aquincho          #+#    #+#              #
-#    Updated: 2023/01/27 12:07:18 by aquincho         ###   ########.fr        #
+#    Updated: 2023/01/26 11:58:24 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MAIN_NAMES = main
 MAIN_FILES = $(addsuffix .cpp, $(MAIN_NAMES))
 
 ANIMAL_DIR = animal/
-ANIMAL_NAMES = Animal Cat Dog WrongAnimal WrongCat
+ANIMAL_NAMES = Animal Cat Dog WrongAnimal WrongCat Brain
 ANIMAL_FILES = $(addsuffix .cpp, $(ANIMAL_NAMES))
 ANIMAL = $(addprefix $(ANIMAL_DIR), $(ANIMAL_FILES))
 
@@ -43,10 +43,10 @@ OBJ_FILES = $(SRC_FILES:%.cpp=$(OBJ_DIR)%.o)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(IFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $(IFLAGS) $^ -o $@
 	@echo "$(GREEN)=== Compilation animals \t\tDONE$(DEFAULT)"
 
 all: $(NAME)

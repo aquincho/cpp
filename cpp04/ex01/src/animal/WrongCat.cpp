@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 16:27:05 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/27 11:04:21 by aquincho         ###   ########.fr       */
+/*   Created: 2023/01/26 10:31:27 by aquincho          #+#    #+#             */
+/*   Updated: 2023/01/26 11:26:33 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog() : Animal("dog")
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
-	std::cout << "default Dog constructor called" << std::endl;
+	std::cout << "Default WrongCat constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &src) : Animal(src)
+WrongCat::WrongCat(const WrongCat &src) : WrongAnimal(src)
 {
-	std::cout << "Copy Animal constructor called" << std::endl;
-	//*this = src;
+	(*this) = src;
 }
 
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "WrongCat destructor called" << std::endl;
 }
 
-Dog&	Dog::operator=(const Dog& src)
+WrongCat&	WrongCat::operator=(const WrongCat &src)
 {
-	std::cout << "Dog assign operator called" << std::endl;
 	if (this != &src)
 		this->_type = src._type;
 	return (*this);
 }
 
-void	Dog::makeSound(void) const
+void	WrongCat::makeSound(void) const
 {
-	std::cout << "WOOF WOOF" << std::endl;
+	std::cout << "Hee haaaw" << std::endl;
 }

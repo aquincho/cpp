@@ -6,25 +6,21 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:39:53 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/26 11:20:44 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:22:02 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
 int main(void)
 {
-	std::cout << "meta" <<std::endl;
 	const Animal* meta = new Animal();
-	std::cout << "j: dog" <<std::endl;
 	const Animal* j = new Dog();
-	std::cout << "i: wrong cat" <<std::endl;
 	const WrongAnimal* i = new WrongCat();
-	std::cout << "k" <<std::endl;
 	const Animal* k;
-	std::cout << "l: cat" <<std::endl;
 	const Animal* l = new Cat();
 	const Animal* copycat(l);
 	
