@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:42:55 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/27 09:38:10 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/30 11:39:39 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Animal::Animal(void)
 Animal::Animal(const Animal &src) : _type(src._type)
 {
 	std::cout << "Copy Animal constructor called" << std::endl;
-	//*this = src;
+	*this = src;
 }
 
 Animal::Animal(std::string type) : _type(type)

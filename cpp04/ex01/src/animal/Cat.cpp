@@ -6,11 +6,12 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:58:19 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/26 14:06:17 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/30 11:44:07 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+#include <ostream>
 
 Cat::Cat() : Animal("cat")
 {
@@ -21,7 +22,11 @@ Cat::Cat() : Animal("cat")
 Cat::Cat(const Cat &src) : Animal(src)
 {
 	std::cout << "Copy Cat constructor called" << std::endl;
-	*this = src;
+	if (this->_brain)
+		delete (_brain);
+	this->_brain = new Brain();
+	for (int i = 0; i < 100; i++)
+		this->_brain->setIdea(i, src._brain->getIdea(i));
 }
 
 Cat::~Cat()
@@ -35,20 +40,16 @@ Cat&	Cat::operator=(const Cat &src)
 	std::cout << "Cat assign operator called" << std::endl;
 	if (this != &src)
 	{
-		this->_type = src._type;
+		this->_type.assign(src._type);
 		if (this->_brain)
 			delete this->_brain;
 		this->_brain = new Brain();
 		for (int i = 0; i < 100; i++)
-			this->_brain[i] = src._brain[i];
+			this->_brain->setIdea(i, src._brain->getIdea(i));
 	}
 	return (*this);
 }
 
-void		Cat::setType(std::string type)
-{
-	this->_type = type;
-}
 
 std::string	Cat::getIdea(const int i) const
 {

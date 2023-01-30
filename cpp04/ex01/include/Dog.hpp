@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 16:27:19 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/26 14:03:35 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:36:18 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ public:
 
 	Dog &operator=(const Dog &src);
 
-	void		setType(std::string type);
 	std::string	getIdea(const int i) const;
 	void		setIdea(const int i, const std::string idea);
 	void		makeSound(void) const;
