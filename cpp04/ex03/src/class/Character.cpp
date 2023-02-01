@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:31 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/30 15:24:17 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/01 09:53:29 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Character&	Character::operator=(const Character &src)
 	this->_name = src.getName();
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_item[i]);
+		if (this->_item[i])
 			delete this->_item[i];
 		if (src._item[i])
 			this->_item[i] = src._item[i]->clone();
@@ -70,15 +70,27 @@ void				Character::equip(AMateria *m)
 
 void				Character::unequip(int idx)
 {
-	if (this->_nbItems > 0)
+	if (idx < 0 || idx >= 4)
+		return ;
+	delete this->_item[idx];
+	this->_nbItems--;
+	for (int i = idx; i < (this->_nbItems - idx); i++)
 	{
-		delete this->_item[this->_nbItems - 1];
-		this->_item[this->_nbItems - 1] = NULL;
-		this->_nbItems--;
+		this->_item[i] = this->_item[i + 1]->clone();
+		delete this->_item[i + 1];
 	}
 }
 
 void				Character::use(int idx, ICharacter& target)
 {
+	if (idx < 0 || idx >= this->_nbItems)
+		return ;
 	this->_item[idx]->use(target);
+}
+
+void				Character::listItems(void) const
+{
+	std::cout << "items of " << this->getName() << std::endl;
+	for (int i = 0; i < this->_nbItems; i++)
+		std::cout << this->_item[i]->getType() << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:04:39 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/30 13:16:02 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/01 09:51:36 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ tmp = src->createMateria("cure");
 me->equip(tmp);
 ICharacter* bob = new Character("bob");
 me->use(0, *bob);
+me->use(1, *bob);
+me->listItems();
+me->unequip(0);
+me->listItems();
 me->use(1, *bob);
 delete bob;
 delete me;

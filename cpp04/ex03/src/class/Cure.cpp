@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:59:23 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/30 14:47:42 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/01 09:43:19 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Cure::Cure(void) : AMateria("cure")
 {
 }
 
-Cure::Cure(const Cure &src)
+Cure::Cure(const Cure &src) : AMateria(src)
 {
 	*this = src;
 }
