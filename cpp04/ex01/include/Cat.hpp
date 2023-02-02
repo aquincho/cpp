@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:56:51 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/27 12:37:44 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:00:52 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 public:
 	Cat();
 	Cat(const Cat &src);
-	~Cat();
+	virtual ~Cat();
 
 	Cat	&operator=(const Cat &src);
 

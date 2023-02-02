@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 16:27:19 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/27 12:36:18 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:00:51 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 public:
 	Dog(void);
 	Dog(const Dog &src);
-	~Dog();
+	virtual ~Dog();
 
 	Dog &operator=(const Dog &src);
 

@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:29:22 by aquincho          #+#    #+#             */
-/*   Updated: 2023/01/26 11:26:31 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:00:49 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
 public:
 	WrongCat(void);
 	WrongCat(const WrongCat &src);
-	~WrongCat();
+	virtual ~WrongCat();
 
 	WrongCat& operator=(const WrongCat &src);
 
