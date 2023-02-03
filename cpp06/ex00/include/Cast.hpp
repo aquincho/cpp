@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:04:16 by aquincho          #+#    #+#             */
-/*   Updated: 2023/02/03 16:14:48 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:34:54 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ private:
 	int			_intValue;
 	float		_floatValue;
 	double		_doubleValue;
+	int			_precision;
 public:
 	Cast(void);
 	Cast(char *arg);
@@ -52,6 +53,8 @@ public:
 	int			getIntValue(void) const;
 	float		getFloatValue(void) const;
 	double		getDoubleValue(void) const;
+	int			getPrecision(void) const;
+	void		setPrecision(void);
 	t_type		getValueType(void) const;
 	char		toChar(void) const;
 	int			toInt(void) const;

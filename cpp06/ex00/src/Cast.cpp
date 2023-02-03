@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:06:17 by aquincho          #+#    #+#             */
-/*   Updated: 2023/02/03 16:22:25 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:34:49 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Cast::Cast(void)
 }
 
 Cast::Cast(char *arg) : _value(std::string(arg)), _type(_other),
-_intValue(0), _floatValue(0), _doubleValue(0)
+_intValue(0), _floatValue(0), _doubleValue(0), _precision(0)
 {
 	std::stringstream ss(this->getValue());
 	
@@ -99,6 +99,17 @@ float Cast::getFloatValue(void) const
 double Cast::getDoubleValue(void) const
 {
 	return (this->_doubleValue);
+}
+
+int		Cast::getPrecision(void) const
+{
+	return (this->_precision);
+}
+
+void	Cast::setPrecision(void)
+{
+	if (this->getValue().find(".") != std::string::npos)
+		this->_precision = this->getValue().length() - this->getValue().find(".");
 }
 
 t_type		Cast::getValueType(void) const
