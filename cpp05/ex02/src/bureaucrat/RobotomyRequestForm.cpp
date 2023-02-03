@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:04 by aquincho          #+#    #+#             */
-/*   Updated: 2023/02/02 14:34:36 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:36:14 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void	RobotomyRequestForm::doAction(void) const
 {
 	int	success;
 
-	std::srand(std::time(NULL));
-	success = 1 + std::rand() % 2;
-	std::cout << success << std::endl;
+	std::cout << "BZZZ BZZZ BZZZ" << std::endl;
+	success = std::rand() % 2;
 	if (success == 1)
 		std::cout << "SUCCESS!!! " << this->_target << " has been robotomized successfully!";
 	else

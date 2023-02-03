@@ -6,7 +6,7 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 15:36:07 by aquincho          #+#    #+#              #
-#    Updated: 2023/02/02 14:14:46 by aquincho         ###   ########.fr        #
+#    Updated: 2023/02/03 09:45:14 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ MAIN_FILES = $(addsuffix .cpp, $(MAIN_NAMES))
 
 BUREAUCRAT_DIR = bureaucrat/
 BUREAUCRAT_NAMES = Bureaucrat AForm ShrubberyCreationForm \
-RobotomyRequestForm
+RobotomyRequestForm PresidentialPardonForm
 BUREAUCRAT_FILES = $(addsuffix .cpp, $(BUREAUCRAT_NAMES))
 BUREAUCRAT = $(addprefix $(BUREAUCRAT_DIR), $(BUREAUCRAT_FILES))
 
