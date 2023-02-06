@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:06:17 by aquincho          #+#    #+#             */
-/*   Updated: 2023/02/03 16:34:49 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/06 09:17:35 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	Cast::setPrecision(void)
 		this->_precision = this->getValue().length() - this->getValue().find(".");
 }
 
-t_type		Cast::getValueType(void) const
+t_type		Cast::getValueType(void)
 {
 	t_type	result = _other;
 	int		pointNb = 0;
@@ -134,8 +134,9 @@ t_type		Cast::getValueType(void) const
 			else
 				return (_other);
 		}
+		if (pointNb == 1)
+			this->_precision++;
 	}
-	std::cout << "points" << pointNb << " " << fNb << std::endl;
 	if (pointNb == 0 && fNb == 0)
 	{
 		result = _int;
@@ -180,7 +181,7 @@ float		Cast::toFloat(void) const
 		return (FMIN);
 	else if (!this->getValue().compare("nan"))
 		throw Cast::NanException();
-	return (this->getIntValue());
+	return (this->getFloatValue());
 }
 
 double		Cast::toDouble(void) const
@@ -194,7 +195,7 @@ double		Cast::toDouble(void) const
 		return (FMIN);
 	else if (!this->getValue().compare("nan"))
 		throw Cast::NanException();
-	return (this->getIntValue());
+	return (this->getDoubleValue());
 }
 
 const char*	Cast::NotDisplayableException::what() const throw()
@@ -241,7 +242,10 @@ std::ostream&	operator<<(std::ostream& os, Cast &src)
 	std::cout << "float: ";
 	try
 	{
-		os << src.toFloat() << "f";
+		os << src.toFloat();
+		if (src.getFloatValue() - src.getIntValue() == 0)
+			os << ".0";
+		os << "f";
 	}
 	catch(const Cast::NanException &e)
 	{
@@ -256,6 +260,8 @@ std::ostream&	operator<<(std::ostream& os, Cast &src)
 	try
 	{
 		os << src.toDouble();
+		if (src.getDoubleValue() - src.getIntValue() == 0)
+			os << ".0";
 	}
 	catch(const Cast::NanException &e)
 	{

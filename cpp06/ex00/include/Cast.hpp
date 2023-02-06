@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:04:16 by aquincho          #+#    #+#             */
-/*   Updated: 2023/02/03 16:34:54 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/02/06 09:03:19 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ public:
 	double		getDoubleValue(void) const;
 	int			getPrecision(void) const;
 	void		setPrecision(void);
-	t_type		getValueType(void) const;
+	t_type		getValueType(void);
 	char		toChar(void) const;
 	int			toInt(void) const;
 	float		toFloat(void) const;
