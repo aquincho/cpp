@@ -6,11 +6,11 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 10:33:36 by aquincho          #+#    #+#              #
-#    Updated: 2023/05/09 09:41:04 by aquincho         ###   ########.fr        #
+#    Updated: 2023/05/11 11:00:32 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mutantstack
+NAME = btc
 
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -19,7 +19,7 @@ RM = rm -f
 
 INC_DIR = ./include/
 SRC_DIR = ./src/
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp BitcoinExchange.cpp
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(SRC:.cpp=.o)
 
