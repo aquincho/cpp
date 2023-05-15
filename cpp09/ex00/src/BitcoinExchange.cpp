@@ -6,21 +6,25 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:20:39 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/12 11:54:06 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:11:49 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void): _status(true)
+BitcoinExchange::BitcoinExchange(void): _status(false)
 {
 	try
 	{
 		this->loadDatabase("./data/data.csv");
 	}
-	catch(BitcoinExchange::InvalidDateException& d)
+	catch(BitcoinExchange::InvalidDateException& date)
 	{
-		std::cerr << d.what() << "\n";
+		std::cerr << date.what() << "\n";
+	}
+	catch(BitcoinExchange::InvalidDataException& data)
+	{
+		std::cerr << data.what() << "\n";
 	}
 	catch(const std::exception& e)
 	{
@@ -61,16 +65,14 @@ size_t	BitcoinExchange::getSize() const
 void	BitcoinExchange::loadDatabase(const char* arg)
 {
 
-	std::ifstream dbFile;
-	std::string buffer;
+	std::ifstream	dbFile;
+	std::string		buffer;
 
 	dbFile.open(arg, std::ifstream::in);
 	std::getline(dbFile, buffer);
 	std::getline(dbFile, buffer);
 	while (!dbFile.eof())
 	{
-		if (!this->_status)
-			throw(BitcoinExchange::InvalidDataException());
 		this->fillLineMap(buffer);
 		std::getline(dbFile, buffer);
 	}
@@ -79,60 +81,110 @@ void	BitcoinExchange::loadDatabase(const char* arg)
 
 void	BitcoinExchange::fillLineMap(std::string line)
 {
-	std::string	*split = NULL;
+	std::string*	split;
 
-	split = splitIn2(line, ",");
-	if (checkDateFormat(split[0]))
+	this->_status = false;
+	split = this->splitIn2(line, ",");
+	if (!split)
 	{
-		this->_base.insert(std::pair<std::string, float>(split[0],
-			std::strtof(split[1].c_str(), NULL)));
+		std::cout << "test " << line << std::endl;
+		throw BitcoinExchange::InvalidDataException(line);
+	}
+	else if (!this->checkDateFormat(split[0]))
+	{
+		std::string	date = std::string(split[0]);
+		delete [] split;
+		throw BitcoinExchange::InvalidDateException(date);
 	}
 	else
 	{
-		this->_status = false;
-		throw BitcoinExchange::InvalidDataException();
+		this->_status = true;
+		this->_base.insert(std::pair<std::string, float>(split[0],
+			std::strtof(split[1].c_str(), NULL)));
+		delete [] split;
 	}
 }
 
 bool	BitcoinExchange::checkDateFormat(std::string date)
 {
 	if (date.length() != 10)
-		throw BitcoinExchange::InvalidDateException(date);
+		return (false);
 	for (int i = 0; i < 4; i++)
 	{
 		if (!std::isdigit(date.at(i)))
-			throw BitcoinExchange::InvalidDateException(date);
+			return (false);
 	}
 	if (!(std::isdigit(date.at(5)) && std::isdigit(date.at(6)) && (date.at(5) == '0'
 		|| (date.at(5) == '1' && date.at(6) <= '2'))))
-		throw BitcoinExchange::InvalidDateException(date);
+		return (false);
 	if (!(std::isdigit(date.at(8)) && std::isdigit(date.at(9)) && (date.at(8) < '3'
 		|| (date.at(8) == '3' && date.at(9) <= '1'))))
-		throw BitcoinExchange::InvalidDateException(date);
+		return (false);
 	if (date.at(4) != '-' || date.at(7) != '-')
-		throw BitcoinExchange::InvalidDateException(date);
+		return (false);
 	return (true);
+}
+
+void	BitcoinExchange::resolveValue(std::string line)
+{
+	try
+	{
+		std::string*	split;
+		
+		split = this->checkInput(line);
+		this->printData(split);
+		delete [] split;
+	}
+	catch(BitcoinExchange::InvalidDateException& date)
+	{
+		std::cerr << date.what() << "\n";
+	}
+	catch(BitcoinExchange::InvalidDataException& data)
+	{
+		std::cerr << data.what() << "\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 float	BitcoinExchange::findValue(const std::string& date) const
 {
-	std::cout << (--this->_base.upper_bound(date))->first << " - ";
-	std::cout << (--this->_base.upper_bound(date))->second << std::endl;
 	return ((--this->_base.upper_bound(date))->second);
 }
 
-void	BitcoinExchange::printData()
+void	BitcoinExchange::printData(std::string* date) const
 {
-	std::map<std::string, float>::iterator	itb;
-	std::map<std::string, float>::iterator	ite;
-	
-	itb = this->_base.begin();
-	ite = this->_base.end();
-	for(std::map<std::string, float>::iterator it = itb; it != ite; ++it)
-		std::cout << it->first << " - " << it->second << std::endl;
+	float	value = std::strtof(date[1].c_str(), NULL);
+
+	if (value < 0)
+		throw NegativeNumber();
+	else if (value > 1000)
+		throw TooLargeNumber();
+	std::cout << date[0] << " => " << date[1] << " = ";
+	std::cout << this->findValue(date[0]) * std::strtof(date[1].c_str(), NULL);
+	std::cout << std::endl;
 }
 
-std::string	*splitIn2(std::string str, std::string sep)
+std::string*	BitcoinExchange::checkInput(std::string line)
+{
+	std::string* split;
+
+	split = this->splitIn2(line, " | ");
+	if (!split)
+		throw InvalidDataException(std::string(line));
+	else if (!this->checkDateFormat(split[0]))
+	{
+		std::string date = split[0];
+		delete [] split;
+		throw BitcoinExchange::InvalidDateException(date);
+	}
+	else
+		return (split);
+}
+
+std::string*	BitcoinExchange::splitIn2(std::string str, std::string sep)
 {
 	std::string				*result = new std::string[2];
 	std::string::size_type	pos = str.find(sep);
@@ -140,19 +192,29 @@ std::string	*splitIn2(std::string str, std::string sep)
 	if (pos == str.npos)
 	{
 		delete [] result;
-		throw std::out_of_range("Wrong data: " + str);
+		return (NULL);
 	}
 	result[0] = str.substr(0, pos);
 	result[1] = str.substr(pos + sep.length(), str.npos);
 	return (result);
 }
 
-const char*	BitcoinExchange::InvalidDataException::what() const throw()
+const std::string	BitcoinExchange::InvalidDataException::what() const throw()
 {
-	return ("Invalid data");
+	return ("Error: bad input => " + this->_data);
 }
 
-const std::string BitcoinExchange::InvalidDateException::what() const throw()
+const std::string	BitcoinExchange::InvalidDateException::what() const throw()
 {
-	return ("Database incomplete: Invalid date: " + this->_date);
+	return ("Error: bad date => " + this->_date);
+}
+
+const char*	BitcoinExchange::NegativeNumber::what() const throw()
+{
+	return ("Error: not a positive number.");
+}
+
+const char*	BitcoinExchange::TooLargeNumber::what() const throw()
+{
+	return ("Error: too large a number.");
 }

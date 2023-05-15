@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:16:15 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/12 11:41:44 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:08:21 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,22 @@ public:
 	bool	getStatus(void) const;
 	size_t	getSize() const;
 	
-	void	loadDatabase(const char* arg);
-	void	fillLineMap(std::string line);
-	bool	checkDateFormat(std::string date);
-	float	findValue(const std::string& date) const;
-	void	printData();
+	void		loadDatabase(const char* arg);
+	void		fillLineMap(std::string line);
+	bool		checkDateFormat(std::string date);
+	void		resolveValue(std::string line);
+	float		findValue(const std::string& date) const;
+	void		printData(std::string* date) const;
+	std::string	*checkInput(std::string line);
+	std::string *splitIn2(std::string str, std::string sep);
 
-	class InvalidDataException: public std::exception
-	{public: virtual const char* what() const throw();};
+	class InvalidDataException
+	{private:
+		std::string	_data;
+	public:
+		InvalidDataException(std::string data): _data(data) {};
+		~InvalidDataException() {};
+		const std::string what() const throw();};
 	class InvalidDateException
 	{private:
 		std::string	_date;
@@ -52,6 +60,10 @@ public:
 		InvalidDateException(std::string date): _date(date) {};
 		~InvalidDateException() {};
 		const std::string what() const throw();};
+	class NegativeNumber: public std::exception
+	{public: virtual const char* what() const throw();};
+	class TooLargeNumber: public std::exception
+	{public: virtual const char* what() const throw();};
 };
 
 std::string *splitIn2(std::string str, std::string sep);

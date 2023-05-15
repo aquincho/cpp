@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:21:02 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/12 11:59:24 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:24:32 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,50 @@
 int main(int argc, char **argv)
 {
 	std::ifstream	ifs;
-	std::ifstre		buff;
+	BitcoinExchange	btc;
 	
+	if (!btc.getStatus())
+			return (0);
 	if (argc != 2)
 	{
-		std::cerr << "Wrong number of arguments" << std::endl;
+		std::cerr << "Error: Could not open file." << std::endl;
 		return (0);
 	}
-	BitcoinExchange*	btc = new BitcoinExchange();
-	//btc->printData();
-	float result;
-	std::cout << btc->getSize() << " - " << btc->getStatus() << std::endl;
+	
 	try
 	{
-		ifs.open(std::string(argv[1]), std::ifstream::in);
-		std::getline(ifs, buff);
+		ifs.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+		ifs.open(argv[1], std::ifstream::in);
 	}
-	catch(const std::exception& e)
+	catch(std::ifstream::failure& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Error: could not open file: " << argv[1] << "\n";
+		return (0);
 	}
 	
-	(void)argv;
+		std::cout << "data loaded: " << btc.getSize() << " - " << btc.getStatus() << std::endl;
+	try
+	{
+		std::string	line;
+		
+		while (!ifs.eof())
+		{
+			std::getline(ifs, line);
+			if (!line.empty() && !line.compare("date | value"))
+				continue;
+			else if (!line.empty())
+				btc.resolveValue(std::string(line));
+		}
+		ifs.close();
+	}
+	catch(std::ifstream::failure& e)
+	{
+		ifs.close();
+		return (0);
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what() << "\n";
+	}
+	
 }
