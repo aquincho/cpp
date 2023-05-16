@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:07:27 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/15 15:47:43 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/16 09:43:11 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,45 +51,35 @@ bool	RPN::checkInput(std::string input) const
 	return (true);
 }
 
-int		RPN::calculate(void)
+double	RPN::calculate(void)
 {
 	
 	for(std::string::iterator it = this->_input.begin(); it != _input.end(); ++it)
 	{
-		
-		
-		std::cout << "*it: " << *it << std::endl;
 		if (*it >= '0' && *it <= '9')
-		{
-			
-			this->_operands.push(*it - '0');
-			std::cout << "Add oper: " << *it << " " << this->_operands.top() << std::endl;
-		}
-		/*else if (*it == ' ')
-			++it;*/
+			this->_operands.push(static_cast<double>(*it - '0'));
 		else if (*it == '+' || *it == '-' || *it == '*' || *it == '/')
 		{
-			int tmp = 0;
+			double tmp = 0;
 			if (this->_operands.size() < 2)
 				throw InvalidInputException();
 			tmp = this->_operands.top();
-			std::cout << "tmp1: " << tmp << std::endl;
 			this->_operands.pop();
 			switch (*it)
 			{
 			case '+':
-				tmp += this->_operands.top();
+				tmp = this->_operands.top() + tmp;
 				break;
 			case '-':
-				tmp -= this->_operands.top();
+				tmp = this->_operands.top() - tmp;
 				break;
 			case '*':
-				tmp *= this->_operands.top();
+				tmp = this->_operands.top() * tmp;
 				break;
 			case '/':
 			{
 				if (this->_operands.top() != 0)
-					tmp /= this->_operands.top();
+					tmp = this->_operands.top() / tmp;
 				else
 					throw DivisionByZeroException();
 				break;
@@ -97,9 +87,12 @@ int		RPN::calculate(void)
 			default:
 				break;
 			}
+			this->_operands.pop();
 			this->_operands.push(tmp);
 		}
 	}
+	if(this->_operands.size() != 1)
+		throw InvalidInputException();
 	return (this->_operands.top());
 }
 

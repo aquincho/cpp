@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:33:09 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/15 15:33:15 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/16 09:39:43 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 class RPN
 {
 private:
-	std::string		_input;
-	std::stack<int>	_operands;
+	std::string			_input;
+	std::stack<double>	_operands;
 
 	RPN();
 	
@@ -34,7 +34,7 @@ public:
 
 	std::string	getInput() const;
 	bool	checkInput(const std::string input) const;
-	int		calculate(void);
+	double	calculate(void);
 
 	class InvalidInputException: public std::exception
 	{public: virtual const char* what() const throw();};
