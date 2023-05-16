@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:16:15 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/15 12:08:21 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:00:28 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ public:
 	class NegativeNumber: public std::exception
 	{public: virtual const char* what() const throw();};
 	class TooLargeNumber: public std::exception
+	{public: virtual const char* what() const throw();};
+	class TooLowDateException: public std::exception
 	{public: virtual const char* what() const throw();};
 };
 

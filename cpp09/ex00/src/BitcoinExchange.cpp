@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:20:39 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/15 12:11:49 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:00:08 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void	BitcoinExchange::printData(std::string* date) const
 		throw NegativeNumber();
 	else if (value > 1000)
 		throw TooLargeNumber();
+	else if (date[0] < this->_base.begin()->first)
+		throw TooLowDateException();
 	std::cout << date[0] << " => " << date[1] << " = ";
 	std::cout << this->findValue(date[0]) * std::strtof(date[1].c_str(), NULL);
 	std::cout << std::endl;
@@ -217,4 +219,9 @@ const char*	BitcoinExchange::NegativeNumber::what() const throw()
 const char*	BitcoinExchange::TooLargeNumber::what() const throw()
 {
 	return ("Error: too large a number.");
+}
+
+const char*	BitcoinExchange::TooLowDateException::what() const throw()
+{
+	return ("Error: Date before minimal date.");
 }
