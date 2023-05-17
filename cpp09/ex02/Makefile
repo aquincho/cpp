@@ -6,11 +6,11 @@
 #    By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 10:33:36 by aquincho          #+#    #+#              #
-#    Updated: 2023/05/15 15:19:50 by aquincho         ###   ########.fr        #
+#    Updated: 2023/05/17 10:40:09 by aquincho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RPN
+NAME = PmergeMe
 
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -19,7 +19,7 @@ RM = rm -f
 
 INC_DIR = ./include/
 SRC_DIR = ./src/
-SRC_FILES = main.cpp RPN.cpp
+SRC_FILES = main.cpp PmergeMe.cpp
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(SRC:.cpp=.o)
 
