@@ -6,7 +6,7 @@
 /*   By: aquincho <aquincho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:05:58 by aquincho          #+#    #+#             */
-/*   Updated: 2023/05/17 15:29:38 by aquincho         ###   ########.fr       */
+/*   Updated: 2023/05/22 09:22:33 by aquincho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ double	PmergeMe::getDeltaTimeDeque(void) const
 
 void	PmergeMe::sort(void)
 {
-	clock_t startTimeVector = clock();
+	clock_t startClock = std::clock();
 	this->sortContainer(this->_unsortedVector);
-	this->_deltaTimeVector = std::clock() - startTimeVector;
-	clock_t startTimeDeque = std::clock();
+	this->_deltaTimeVector = (std::clock() - startClock) * 1000000 / CLOCKS_PER_SEC;
+	startClock = std::clock();
 	this->sortContainer(this->_unsortedDeque);
-	this->_deltaTimeDeque = std::clock() - startTimeDeque;
+	this->_deltaTimeDeque = (std::clock() - startClock) * 1000000 / CLOCKS_PER_SEC;
 }
 
 void	PmergeMe::printResult(void)
@@ -86,12 +86,10 @@ void	PmergeMe::printResult(void)
 	std::cout << "After:\t";
 	this->printContainer(this->_unsortedVector);
 	std::cout << "Time to process a range of \t" << this->_unsortedVector.size();
-	std::cout << " elements with std::vector : ";
-	std::cout << std::cout.setf(std::ios::fixed) << this->_deltaTimeVector / CLOCKS_PER_SEC;
-	std::cout << " us" << std::endl;
+	std::cout << " elements with std::vector : " << this->_deltaTimeVector << " us\n";
 	std::cout << "Time to process a range of \t" << this->_unsortedDeque.size();
-	std::cout << " elements with std::vector : " << this->_deltaTimeDeque / CLOCKS_PER_SEC;
-	std::cout << " us" << std::endl;
+	std::cout << " elements with std::deque : " << this->_deltaTimeDeque << " us";
+	std::cout << std::endl;
 }
 
 void	PmergeMe::fillContainers(int argc, char **argv)
